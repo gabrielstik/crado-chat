@@ -1,11 +1,19 @@
 :root {
   --white: #ffffff;
+  --red: #E53935;
+  --green: #93F9B9;
+  --lightBlue: #00C6FF;
+  --yellow: #FFB347;
+
   --background: #F4F7FC;
   --border: #EAEEF7;
+
   --author: #7C819D;
   --authorSecondary: #B7BECF;
+
   --messageSent: #70727F;
   --messageReceive: #FFFFFF;
+
   --main: #4F78F6;
   --title: #2E3546;
 }
