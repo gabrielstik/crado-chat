@@ -11,7 +11,21 @@
         </div>
       </div>
     </div>
-    <div class="chatWindow__messages"></div>
+    <div class="chatWindow__messages">
+      <Message
+        status='received'
+        image="https://picsum.photos/200/200/?image=89"
+        content='Salut gros'
+      />
+      <Message
+        content='Jsuis pas ton gros gars'
+      />
+      <Message
+        status='received'
+        image="https://picsum.photos/200/200/?image=89"
+        content='Jsuis pas ton gars mec'
+      />
+    </div>
     <div class="chatWindow__footer">
       <div class="chatWindow__input">
         <form action="">
@@ -22,6 +36,17 @@
     </div>
   </div>
 </template>
+
+<script>
+import Message from '~/components/Message.vue'
+
+export default {
+  components: {
+    Message
+  }
+}
+</script>
+
 
 <style scoped>
   .chatWindow {
