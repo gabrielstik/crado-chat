@@ -1,6 +1,19 @@
 <template>
   <section class="container">
     <div>
+      <Message
+       status='received'
+       image="https://picsum.photos/200/200/?image=89"
+       content='Salut gros'
+      />
+      <Message
+        content='Jsuis pas ton gros gars'
+      />
+      <Message
+        status='received'
+        image="https://picsum.photos/200/200/?image=89"
+        content='Jsuis pas ton gars mec'
+      />
       <app-logo/>
       <h1 class="title">
         crado-chat
@@ -24,10 +37,12 @@
 
 <script>
 import AppLogo from '~/components/AppLogo.vue'
+import Message from '~/components/Message.vue'
 
 export default {
   components: {
-    AppLogo
+    AppLogo,
+    Message
   }
 }
 </script>
