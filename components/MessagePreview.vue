@@ -2,7 +2,7 @@
   <div class="messagePreview">
     <div class="messagePreview__author">
       <div class="messagePreview__authorPicture">
-        <img src="https://picsum.photos/200/300" alt="author picture">
+        <img src="../assets/images/man1.png" alt="author picture">
       </div>
       <div class="messagePreview__authorName">Didier Deschamps</div>
     </div>
@@ -14,6 +14,7 @@
   .messagePreview {
     width: 100%;
     padding: 20px;
+    margin-bottom: 10px;
 
     font-family: 'Muli';
     text-align: left;

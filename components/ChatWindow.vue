@@ -3,7 +3,7 @@
     <div class="chatWindow__header">
       <div class="chatWindow__author">
         <div class="chatWindow__authorPicture">
-          <img src="https://picsum.photos/200/300" alt="author picture">
+          <img src="../assets/images/man1.png" alt="author picture">
         </div>
         <div class="chatWindow__authorInfos">
           <div class="chatWindow__authorName">Didier Deschamps</div>
@@ -14,7 +14,7 @@
     <div class="chatWindow__messages">
       <Message
         status='received'
-        image="https://picsum.photos/200/200/?image=89"
+        image="./_nuxt/assets/images/man1.png"
         content='Salut gros'
       />
       <Message
@@ -22,7 +22,7 @@
       />
       <Message
         status='received'
-        image="https://picsum.photos/200/200/?image=89"
+        image="./_nuxt/assets/images/man1.png"
         content='Jsuis pas ton gars mec'
       />
     </div>
@@ -51,6 +51,7 @@ export default {
 <style scoped>
   .chatWindow {
     width: 100%;
+    height: 100%;
 
     background-color: var(--white);
     border-radius: 4px;
@@ -108,6 +109,7 @@ export default {
   }
 
   .chatWindow__messages {
+    height: 80%;
     padding: 30px;
 
     background-color: var(--white)
