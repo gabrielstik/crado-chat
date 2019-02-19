@@ -3,20 +3,25 @@
     <div class="allMessages">
       <div class="title">
         <h2>All messages</h2>
-        <div class="newMessage"></div>
+        <div v-if="!isSearch" v-on:click="isSearch = !isSearch" class="newMessage"></div>
+        <div v-else v-on:click="isSearch = !isSearch" class="newMessage--close">×</div>
       </div>
       <input class="search" type="text" name="search" placeholder="Search message"/>
+      <!-- <chat-previews/> -->
       <div class="previews">
-        <MessagePreview/>
-        <MessagePreview/>
-        <MessagePreview/>
-        <MessagePreview/>
-        <MessagePreview/>
-        <MessagePreview/>
+        <div
+          v-for="(messagePreview, index) in messagePreviews"
+          :key="index"
+          v-on:click="openConversation(messagePreview.conversationID)"
+        >
+          <MessagePreview/>
+        </div>
       </div>
     </div>
     <div class="chatWindowContainer">
-      <ChatWindow/>
+      <ChatWindow
+        :isSearch=isSearch
+      />
     </div>
   </section>
 </template>
@@ -31,6 +36,32 @@ export default {
     Message,
     ChatWindow,
     MessagePreview
+  },
+  data() {
+    return {
+      isSearch: true,
+      messagePreviews: [
+        {
+          receiverID: '3',
+          conversationID: '1',
+        },
+        {
+          receiverID: '4',
+          conversationID: '2',
+        },
+        {
+          receiverID: '3',
+          conversationID: '3',
+        }
+      ]
+    }
+  },
+  methods: {
+    openConversation(_conversationID) {
+      this.isSearch = false
+      
+
+    }
   }
 }
 </script>
@@ -56,6 +87,10 @@ export default {
   padding: 60px 41px 0 41px;
 }
 
+.previews {
+  overflow-y: scroll;
+}
+
 .newMessage {
   background: url("../assets/pictograms/new.svg");
   background-color: var(--main);
@@ -70,6 +105,28 @@ export default {
   cursor: pointer;
 }
 
+.newMessage--close {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--main);
+  background-repeat: no-repeat;
+  background-position: 50%;
+  text-align: center;
+  font-size: 40px;
+
+  border-radius: 4px;
+
+  width: 35px;
+  height: 35px;
+
+  color: var(--white);
+
+  cursor: pointer;
+  user-select: none;
+}
+
 .allMessages {
   width: 30%;
   height: 100%;
@@ -77,10 +134,6 @@ export default {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-}
-
-.previews {
-  overflow-y: scroll;
 }
 
 .allMessages .title {

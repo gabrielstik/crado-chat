@@ -65,6 +65,14 @@ export default {
             bottomRight: "0072FF"
           }
         },
+        { 
+          background: "var(--red)" ,
+          gradient: 
+          {
+            topLeft: "E53935",
+            bottomRight: "E35D5B"
+          }
+        },
       ],
     }
   },
@@ -74,7 +82,9 @@ export default {
       for (const color of this.$refs.colors) {
         color.style.zIndex = '0'
       }
+
       this.$refs.colors[_index].style.zIndex = '10'
+      
       document.documentElement.style.setProperty("--body", `linear-gradient(151.56deg, #${_gradient.topLeft} 0%, #${_gradient.bottomRight} 96.79%)`);
       document.documentElement.style.setProperty("--main", `${_color}`);
     }
@@ -106,40 +116,13 @@ export default {
     height: 22px;
   }
 
-  /* .colors__squares .colors__square:nth-child(1) {
-    background-color: var(--red)
+  .colors__squares .colors__square:nth-child(1) {
+    z-index: 10;
   }
-
-  .colors__squares .colors__square:nth-child(2) {
-    background-color: var(--yellow)
-  }
-
-  .colors__squares .colors__square:nth-child(3) {
-    background-color: var(--lightBlue)
-  }
-
-  .colors__squares .colors__square:nth-child(4) {
-    background-color: var(--green)
-  } */
 
   .colors__squares:not(.active) .colors__square {
     transform: translateY(0px)!important
   }
-  /* .colors__squares.active .colors__square:nth-child(1) {
-    transform: translateY(-30px)
-  }
-
-  .colors__squares.active .colors__square:nth-child(2) {
-    transform: translateY(-60px)
-  }
-
-  .colors__squares.active .colors__square:nth-child(3) {
-    transform: translateY(-90px)
-  }
-
-  .colors__squares.active .colors__square:nth-child(4) {
-    transform: translateY(-120px)
-  } */
 
   .colors__square {
     position: absolute;
