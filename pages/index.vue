@@ -1,48 +1,21 @@
 <template>
   <section class="container">
     <div>
-      <Message
-       status='received'
-       image="https://picsum.photos/200/200/?image=89"
-       content='Salut gros'
-      />
-      <Message
-        content='Jsuis pas ton gros gars'
-      />
-      <Message
-        status='received'
-        image="https://picsum.photos/200/200/?image=89"
-        content='Jsuis pas ton gars mec'
-      />
-      <app-logo/>
-      <h1 class="title">
-        crado-chat
-      </h1>
-      <h2 class="subtitle">
-        Crado Chat
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green">Documentation</a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey">GitHub</a>
-      </div>
+      <chat-window/>
     </div>
   </section>
 </template>
 
 <script>
 import AppLogo from '~/components/AppLogo.vue'
-import Message from '~/components/Message.vue'
+import MessagePreview from '~/components/MessagePreview.vue'
+import ChatWindow from '~/components/ChatWindow.vue'
 
 export default {
   components: {
     AppLogo,
-    Message
+    MessagePreview,
+    ChatWindow,
   }
 }
 </script>

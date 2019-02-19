@@ -55,6 +55,8 @@ export default{
   border-bottom-right-radius: 12px;
   padding: 14px 10px;
   max-width: 295px;
+  font-size: 14px;
+  background-color: var(--white)
 }
 
 .received {
@@ -71,7 +73,7 @@ export default{
 .received .message {
   border-top-left-radius: 0px;
   border-top-right-radius: 12px;
-  background-color: blue;
+  background-color: var(--main);
   color: white;
 }
 

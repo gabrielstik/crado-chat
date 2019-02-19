@@ -10,9 +10,14 @@ module.exports = {
       { hid: 'description', name: 'description', content: 'Crado Chat' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', href: "https://fonts.googleapis.com/css?family=Muli:400,600" }
     ]
   },
+  css: [
+    "~/assets/css/colors.css",
+    "~/assets/css/reset.css",
+  ],
   /*
   ** Customize the progress bar color
   */
