@@ -2,16 +2,20 @@
   <div 
   v-on:mouseenter="active = !active" 
   v-on:mouseleave="active = !active" 
+  v-bind:style="{ height: `${40 * colors.length}px` }"
   class="colors--hitbox">
     <div 
     class="colors"
     >
       <div v-bind:class="{ active: active }" class="colors__squares">
-        <div class="colors__square"></div>
-        <div class="colors__square"></div>
-        <div class="colors__square"></div>
-        <div class="colors__square"></div>
-        <div class="colors__square"></div>
+        <div 
+        v-for="(color, index) in colors"
+        :key="index"
+        v-bind:style="{ backgroundColor: color.background, transform: `translateY(${-30 * index}px)` }"
+        v-on:click="updateColor(color.background, color.gradient, index)"
+        class="colors__square"
+        ref="colors"
+        ></div>
       </div>
       <div class="colors__label">Color</div>
     </div>
@@ -24,21 +28,68 @@ export default {
     return {
       active: false
     }
+  },
+  props: {
+    colors: {
+      type: Array,
+      default: () => [
+        { 
+          background: "#4268DD" ,
+          gradient: 
+          {
+            topLeft: "537CFD",
+            bottomRight: "4268DD"
+          }
+        },
+        { 
+          background: "var(--yellow)" ,
+          gradient: 
+          {
+            topLeft: "FFB347",
+            bottomRight: "FFCC33"
+          }
+        },
+        { 
+          background: "var(--green)" ,
+          gradient: 
+          {
+            topLeft: "1D976C",
+            bottomRight: "93F9B9"
+          }
+        },
+        { 
+          background: "var(--lightBlue)" ,
+          gradient: 
+          {
+            topLeft: "00C6FF",
+            bottomRight: "0072FF"
+          }
+        },
+      ],
+    }
+  },
+  methods: 
+  {
+    updateColor(_color, _gradient, _index) {
+      for (const color of this.$refs.colors) {
+        color.style.zIndex = '0'
+      }
+      this.$refs.colors[_index].style.zIndex = '10'
+      document.documentElement.style.setProperty("--body", `linear-gradient(151.56deg, #${_gradient.topLeft} 0%, #${_gradient.bottomRight} 96.79%)`);
+      document.documentElement.style.setProperty("--main", `${_color}`);
+    }
   }
 }
 </script>
 
 <style>
-  body {
-    background: linear-gradient(151.56deg, #537CFD 0%, #4268DD 96.79%);
-  }
-
   .colors--hitbox {
     position: absolute;
     display: flex;
     align-items: flex-end;
     height: 242px;
     padding: 50px;
+    z-index: 10;
 
     left: 0px;
     bottom: 0px;
@@ -55,7 +106,7 @@ export default {
     height: 22px;
   }
 
-  .colors__squares .colors__square:nth-child(1) {
+  /* .colors__squares .colors__square:nth-child(1) {
     background-color: var(--red)
   }
 
@@ -69,9 +120,12 @@ export default {
 
   .colors__squares .colors__square:nth-child(4) {
     background-color: var(--green)
-  }
+  } */
 
-  .colors__squares.active .colors__square:nth-child(1) {
+  .colors__squares:not(.active) .colors__square {
+    transform: translateY(0px)!important
+  }
+  /* .colors__squares.active .colors__square:nth-child(1) {
     transform: translateY(-30px)
   }
 
@@ -85,7 +139,7 @@ export default {
 
   .colors__squares.active .colors__square:nth-child(4) {
     transform: translateY(-120px)
-  }
+  } */
 
   .colors__square {
     position: absolute;
@@ -95,7 +149,7 @@ export default {
     border: 2px solid var(--white);
     border-radius: 3px;
 
-    background-color: var(--main);
+    /* background-color: var(--main); */
 
     transition: transform ease 150ms;
 

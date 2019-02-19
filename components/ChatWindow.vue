@@ -25,6 +25,32 @@
         image="./_nuxt/assets/images/man1.png"
         content='Jsuis pas ton gars mec'
       />
+      <Message
+        status='received'
+        image="./_nuxt/assets/images/man1.png"
+        content='Salut gros'
+      />
+      <Message
+        content='Jsuis pas ton gros gars'
+      />
+      <Message
+        status='received'
+        image="./_nuxt/assets/images/man1.png"
+        content='Jsuis pas ton gars mec'
+      />
+      <Message
+        status='received'
+        image="./_nuxt/assets/images/man1.png"
+        content='Salut gros'
+      />
+      <Message
+        content='Jsuis pas ton gros gars'
+      />
+      <Message
+        status='received'
+        image="./_nuxt/assets/images/man1.png"
+        content='Jsuis pas ton gars mec'
+      />
     </div>
     <div class="chatWindow__footer">
       <div class="chatWindow__input">
@@ -52,6 +78,8 @@ export default {
   .chatWindow {
     width: 100%;
     height: 100%;
+    display: flex;
+    flex-direction: column;
 
     background-color: var(--white);
     border-radius: 4px;
@@ -111,6 +139,9 @@ export default {
   .chatWindow__messages {
     height: 80%;
     padding: 30px;
+    flex: 1;
+
+    overflow-y: scroll;
 
     background-color: var(--white)
   }
@@ -140,7 +171,10 @@ export default {
     border-radius: 100%;
 
     background: url("../assets/pictograms/send.svg");
-    background-size: 100%;
+    background-size: 15px;
+    background-color: var(--main);
+    background-repeat: no-repeat;
+    background-position: 50%;
 
     cursor: pointer;
   }

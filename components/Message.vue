@@ -17,9 +17,9 @@
     v-else
     class="messageContainer sent"
   >
-   <div class="message">
-     {{ content }}
-   </div>
+  <div class="message">
+    {{ content }}
+  </div>
   </div>
 </template>
 
@@ -56,6 +56,7 @@ export default{
   padding: 14px 10px;
   max-width: 295px;
   font-size: 14px;
+  line-height: 1.2;
   background-color: var(--white)
 }
 

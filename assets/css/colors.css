@@ -1,8 +1,8 @@
 :root {
   --white: #ffffff;
   --red: #E53935;
-  --green: #93F9B9;
-  --lightBlue: #00C6FF;
+  --green: #82EBAE;
+  --lightBlue: #00B6FF;
   --yellow: #FFB347;
 
   --background: #F4F7FC;
@@ -15,4 +15,5 @@
   --messageReceive: #FFFFFF;
 
   --main: #4F78F6;
+  --body: linear-gradient(151.56deg, #537CFD 0%, #4268DD 96.79%);
 }

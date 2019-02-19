@@ -1,12 +1,14 @@
 <template>
-  <section class="container">
+  <section class="chat">
     <div class="allMessages">
       <div class="title">
         <h2>All messages</h2>
-        <img src="../assets/pictograms/new.svg" alt="newMessage">
+        <div class="newMessage"></div>
       </div>
       <input class="search" type="text" name="search" placeholder="Search message"/>
       <div class="previews">
+        <MessagePreview/>
+        <MessagePreview/>
         <MessagePreview/>
         <MessagePreview/>
         <MessagePreview/>
@@ -34,13 +36,38 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  height: 100vh;
+
+.chat {
+  min-width: 720px;
+  height: 96vh;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+  margin-left: 180px;
+  margin-right: 180px;
+  z-index: 10;
+  position: relative;
   display: flex;
+  background-color: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 14px;
   justify-content: space-between;
   align-items: center;
   text-align: center;
   padding: 60px 41px 0 41px;
+}
+
+.newMessage {
+  background: url("../assets/pictograms/new.svg");
+  background-color: var(--main);
+  background-repeat: no-repeat;
+  background-position: 50%;
+
+  border-radius: 4px;
+
+  width: 35px;
+  height: 35px;
+
+  cursor: pointer;
 }
 
 .allMessages {
@@ -50,6 +77,10 @@ export default {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+}
+
+.previews {
+  overflow-y: scroll;
 }
 
 .allMessages .title {

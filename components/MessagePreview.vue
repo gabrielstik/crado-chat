@@ -18,6 +18,7 @@
 
     font-family: 'Muli';
     text-align: left;
+    line-height: 1.4;
 
     background-color: var(--white);
 
