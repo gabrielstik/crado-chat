@@ -62,6 +62,7 @@ export default {
 .allMessages .title h2 {
   font-size: 22px;
   font-family: Muli;
+  color: var(--title);
 }
 
 .allMessages .title img {
