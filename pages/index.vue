@@ -2,6 +2,8 @@
   <section class="container">
     <div>
       <app-logo/>
+      <message-preview/>
+      <chat-window/>
       <h1 class="title">
         crado-chat
       </h1>
@@ -24,10 +26,14 @@
 
 <script>
 import AppLogo from '~/components/AppLogo.vue'
+import MessagePreview from '~/components/MessagePreview.vue'
+import ChatWindow from '~/components/ChatWindow.vue'
 
 export default {
   components: {
-    AppLogo
+    AppLogo,
+    MessagePreview,
+    ChatWindow,
   }
 }
 </script>
