@@ -3,6 +3,7 @@
     <div>
       <chat-window/>
     </div>
+    <colors/>
   </section>
 </template>
 
@@ -10,12 +11,14 @@
 import AppLogo from '~/components/AppLogo.vue'
 import MessagePreview from '~/components/MessagePreview.vue'
 import ChatWindow from '~/components/ChatWindow.vue'
+import Colors from '~/components/Colors.vue'
 
 export default {
   components: {
     AppLogo,
     MessagePreview,
     ChatWindow,
+    Colors,
   }
 }
 </script>
