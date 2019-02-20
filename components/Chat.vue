@@ -7,11 +7,24 @@
         <div v-else v-on:click="isSearch = !isSearch" class="newMessage--close">×</div>
       </div>
       <input class="search" type="text" name="search" placeholder="Search message"/>
-      <chat-previews/>
+      <div class="previews">
+        <div 
+          v-for="(conv, index) in this.convs"
+          :key="index"
+          v-on:click="updateConversation(conv)"
+        >
+          <MessagePreview
+            :data="conv"
+            :id="conv.id"
+          />
+        </div>
+      </div>
     </div>
     <div class="chatWindowContainer">
       <ChatWindow
-        :isSearch=isSearch
+        :isSearch="isSearch"
+        :convID="convID"
+        :messages="messages"
       />
     </div>
   </section>
@@ -19,18 +32,20 @@
 
 <script>
 import Message from '~/components/Message.vue'
+import MessagePreview from '~/components/MessagePreview.vue'
 import ChatWindow from '~/components/ChatWindow.vue'
-import ChatPreviews from '~/components/ChatPreviews.vue'
 
 export default {
   components: {
     Message,
+    MessagePreview,
     ChatWindow,
-    ChatPreviews
   },
   data() {
     return {
       isSearch: true,
+      convID: "0",
+      messages: [],
       messagePreviews: [
         {
           receiverID: '3',
@@ -44,14 +59,15 @@ export default {
           receiverID: '3',
           conversationID: '3',
         }
-      ]
+      ],
+      convs: this.$store.state.api.convs,
     }
   },
   methods: {
-    openConversation(_conversationID) {
+    updateConversation(_conv) {
       this.isSearch = false
-      
-
+      // this.convID = _conv.id
+      this.messages = _conv.messages
     }
   }
 }
@@ -80,6 +96,7 @@ export default {
 
 .previews {
   overflow-y: scroll;
+  width: 100%;
 }
 
 .newMessage {

@@ -6,6 +6,8 @@
     <!-- <chat-search/> -->
     <chat-messages
       v-if="!isSearch"
+      :convID=convID
+      :messages=messages
     />
     <div v-if="!isSearch" class="chatWindow__footer">
       <div class="chatWindow__input">
@@ -31,8 +33,16 @@ export default {
     isSearch: {
       type: Boolean,
       default:() => false
+    },
+    convID: {
+      type: String,
+      default:() => "0"
+    },
+    messages: {
+      type: Array,
+      default:() => []
     }
-  }
+  },
 }
 </script>
 
