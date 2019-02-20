@@ -1,7 +1,7 @@
 <template>
     <div class="chatWindow__messages">
       <Message
-        v-for="(message, index) of this.messages"
+        v-for="(message, index) of messages"
         :key="index"
         :isSent=isSent(message.from)
         image="./_nuxt/assets/images/man1.png"
@@ -18,14 +18,25 @@ export default {
   components: {
     Message,
   },
+  props: {
+    convID: {
+      type: String,
+      default:() => "0"
+    },
+    messages: {
+      type: Array,
+      default:() => []
+    }
+  },
   methods: {
     isSent: (_authorID) => {
       return /*userID*/28 == _authorID // Update varables name
-    }
+    },
   },
   data() {
     return {
-      messages: {}
+      // messages: this.$store.state.api.convs[this.convID].messages,
+      convs: this.$store.state.api.convs
     }
   },
   created: function() {
@@ -34,6 +45,6 @@ export default {
     db.get('convs').then(doc => {
       this.messages = doc.convs[0].messages
     })
-  }
+  },
 }
 </script>

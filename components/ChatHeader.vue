@@ -12,7 +12,7 @@
   </div>
   <div v-else class="chatWindow__header">
     <form action="">
-      <input type="text" placeholder="Search a friend">
+      <input type="text" placeholder="Search a friend" autofocus>
       <input type="submit" value="">
     </form>
   </div>
