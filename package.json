@@ -13,8 +13,14 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
+    "fs": "0.0.1-security",
+    "mongodb": "^3.1.13",
+    "mongoose": "^5.4.13",
     "nuxt": "^2.0.0",
-    "style": "0.0.3"
+    "pouchdb": "^7.0.0",
+    "redirect-ssl": "^1.4.0",
+    "socketio": "^1.0.0",
+    "tls": "^0.0.1"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",

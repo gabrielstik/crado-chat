@@ -13,43 +13,11 @@
     </div>
     <div class="chatWindow__messages">
       <Message
-        status='received'
+        v-for="(message, index) of this.messages"
+        :key="index"
+        :status="message.from == 28 ? 'received' : 'sended'"
         image="./_nuxt/assets/images/man1.png"
-        content='Salut gros'
-      />
-      <Message
-        content='Jsuis pas ton gros gars'
-      />
-      <Message
-        status='received'
-        image="./_nuxt/assets/images/man1.png"
-        content='Jsuis pas ton gars mec'
-      />
-      <Message
-        status='received'
-        image="./_nuxt/assets/images/man1.png"
-        content='Salut gros'
-      />
-      <Message
-        content='Jsuis pas ton gros gars'
-      />
-      <Message
-        status='received'
-        image="./_nuxt/assets/images/man1.png"
-        content='Jsuis pas ton gars mec'
-      />
-      <Message
-        status='received'
-        image="./_nuxt/assets/images/man1.png"
-        content='Salut gros'
-      />
-      <Message
-        content='Jsuis pas ton gros gars'
-      />
-      <Message
-        status='received'
-        image="./_nuxt/assets/images/man1.png"
-        content='Jsuis pas ton gars mec'
+        :content="message.message"
       />
     </div>
     <div class="chatWindow__footer">
@@ -65,10 +33,23 @@
 
 <script>
 import Message from '~/components/Message.vue'
+import PouchDB from 'pouchdb'
 
 export default {
   components: {
     Message
+  },
+  data: function() {
+    return {
+      messages: {}
+    }
+  },
+  created: function() {
+    const db = new PouchDB('http://localhost:5984/cradochat')
+
+    db.get('convs').then(doc => {
+      this.messages = doc.convs[0].messages
+    })
   }
 }
 </script>
