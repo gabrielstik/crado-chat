@@ -74,10 +74,12 @@ export default {
   text-align: center;
   padding: 20px;
   margin-bottom: 26px;
+  cursor: pointer;
 }
 
 .registerContainer p {
   width: 100%;
   color: var(--main);
+  cursor: pointer;
 }
 </style>
