@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="status == 'received'"
+    v-if="!isSent"
     class="messageContainer received"
   >
     <div class="imgContainer">
@@ -30,15 +30,19 @@ export default{
       type: String,
       default: () => "Salut"
     },
-    status: {
-      type: String,
-      default: () => ""
+    isSent: {
+      type: Boolean,
+      default: () => false
     },
     image: {
       type: String,
       default: () => ""
+    },
+    isSearch: {
+      type: Boolean,
+      default:() => false
     }
-  }
+  },
 }
 </script>
 

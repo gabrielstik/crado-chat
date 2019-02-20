@@ -12,7 +12,7 @@ import AppLogo from '~/components/AppLogo.vue'
 import MessagePreview from '~/components/MessagePreview.vue'
 import ChatWindow from '~/components/ChatWindow.vue'
 import Colors from '~/components/Colors.vue'
-import chat from '~/layouts/chat.vue'
+import Chat from '~/components/Chat.vue'
 
 export default {
   components: {
@@ -20,7 +20,7 @@ export default {
     MessagePreview,
     ChatWindow,
     Colors,
-    chat
+    Chat
   },
 }
 </script>
