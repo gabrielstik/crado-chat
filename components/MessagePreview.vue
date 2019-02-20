@@ -4,11 +4,27 @@
       <div class="messagePreview__authorPicture">
         <img src="../assets/images/man1.png" alt="author picture">
       </div>
-      <div class="messagePreview__authorName">Didier Deschamps</div>
+      <div class="messagePreview__authorName">{{getUsername(otherUser(data.users))}}</div>
     </div>
-    <div class="messagePreview__message">Bravo à toute l'équipe pour avoir rammené la coupe à la maison</div>
+    <div class="messagePreview__message">{{data.messages[data.messages.length-1].message}}</div>
   </div>
 </template>
+
+<script>
+export default {
+  props: [
+    'data'
+  ],
+  methods: {
+    getUsername: function(id) {
+      return id
+    },
+    otherUser: function(users) {
+      return users[0] == this.$store.state.myID ? users[1] : users[0]
+    }
+  }
+}
+</script>
 
 <style scoped>
   .messagePreview {

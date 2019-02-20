@@ -7,16 +7,7 @@
         <div v-else v-on:click="isSearch = !isSearch" class="newMessage--close">×</div>
       </div>
       <input class="search" type="text" name="search" placeholder="Search message"/>
-      <!-- <chat-previews/> -->
-      <div class="previews">
-        <div
-          v-for="(messagePreview, index) in messagePreviews"
-          :key="index"
-          v-on:click="openConversation(messagePreview.conversationID)"
-        >
-          <MessagePreview/>
-        </div>
-      </div>
+      <chat-previews/>
     </div>
     <div class="chatWindowContainer">
       <ChatWindow
@@ -29,13 +20,13 @@
 <script>
 import Message from '~/components/Message.vue'
 import ChatWindow from '~/components/ChatWindow.vue'
-import MessagePreview from '~/components/MessagePreview.vue'
+import ChatPreviews from '~/components/ChatPreviews.vue'
 
 export default {
   components: {
     Message,
     ChatWindow,
-    MessagePreview
+    ChatPreviews
   },
   data() {
     return {

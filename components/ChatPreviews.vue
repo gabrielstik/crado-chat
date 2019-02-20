@@ -1,37 +1,33 @@
 <template>
   <div class="previews">
     <MessagePreview
-      v-for="(messagePreview, index) in messagePreviews"
+      v-for="(conv, index) in this.convs"
       :key="index"
+      :data="conv"
+      :id="conv.id"
     />
   </div>
 </template>
 
 <script>
 import MessagePreview from '~/components/MessagePreview.vue'
+import PouchDB from 'pouchdb'
 
 export default {
   components: {
     MessagePreview,
   },
-
   data() {
     return {
-      messagePreviews: [
-        {
-          receiverID: '3',
-          conversationID: '1',
-        },
-        {
-          receiverID: '4',
-          conversationID: '2',
-        },
-        {
-          receiverID: '3',
-          conversationID: '3',
-        }
-      ]
+      convs: []
     }
+  },
+  created: function() {
+    const db = new PouchDB('http://localhost:5984/cradochat')
+
+    db.get('convs').then(doc => {
+      this.convs = doc.convs
+    })
   }
 }
 </script>
