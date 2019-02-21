@@ -9,7 +9,7 @@
       </div>
       <input class="search" type="text" name="search" placeholder="Search message"/>
       <div class="previews">
-        <div 
+        <!-- <div 
           v-for="(conv, index) in this.convs"
           :key="index"
           v-on:click="updateConversation(conv, index)"
@@ -19,11 +19,12 @@
             :data="conv"
             :id="conv.id"
           />
-        </div>
+        </div> -->
       </div>
     </div>
     <div class="chatWindowContainer">
       <ChatWindow
+        ref="chatwindow"
         :isSearch="isSearch"
         :convID="convID"
         :messages="messages"
@@ -45,7 +46,7 @@ export default {
   },
   data() {
     return {
-      isSearch: true,
+      isSearch: false,
       convID: "0",
       activeConvIndex: 0,
       messages: [],
@@ -63,7 +64,7 @@ export default {
           conversationID: '3',
         }
       ],
-      convs: this.$store.state.api.convs,
+      // convs: this.$store.state.api.convs,
     }
   },
   methods: {
@@ -82,16 +83,16 @@ export default {
       }
       
     },
-    checkPreviews(_previews) {
-      if(_previews.length == 0) {
-        this.isSearch = true
-      } else {
-        this.isSearch = false
+    // checkPreviews(_previews) {
+    //   if(_previews.length == 0) {
+    //     this.isSearch = true
+    //   } else {
+    //     this.isSearch = false
 
-        this.messages = this.convs[0].messages
-        this.$refs.previews[0].style.border = '1px solid var(--main)'
-      }
-    },
+    //     this.messages = this.convs[0].messages
+    //     this.$refs.previews[0].style.border = '1px solid var(--main)'
+    //   }
+    // },
     newMessage(_isClose = false) {
       this.isSearch = !this.isSearch
 
@@ -107,7 +108,7 @@ export default {
     }
   },
   mounted(){
-    this.checkPreviews(this.convs)
+    // this.checkPreviews(this.convs)
   },
 }
 </script>

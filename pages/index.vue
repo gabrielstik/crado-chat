@@ -1,7 +1,7 @@
 <template>
   <section>
     <div>
-      <chat/>
+      <chat ref="chat"/>
     </div>
     <colors/>
   </section>
@@ -13,6 +13,7 @@ import MessagePreview from '~/components/MessagePreview.vue'
 import ChatWindow from '~/components/ChatWindow.vue'
 import Colors from '~/components/Colors.vue'
 import Chat from '~/components/Chat.vue'
+import openSocket from 'socket.io-client'
 
 export default {
   components: {
@@ -22,6 +23,39 @@ export default {
     Colors,
     Chat
   },
+  mounted: function() {
+    const socket = openSocket('http://localhost:3000')
+    console.log(socket)
+
+    const setUsername = () => {
+      const username = 'gabe'
+
+      if (username) {
+        socket.emit('add user', username);
+      }
+    }
+    setUsername()
+
+    const sendMessage = (message) => {
+      console.log('sending '+message)
+      this.$store.commit('updateMessages', { isSent: true, message: message })
+      socket.emit('new message', message);
+    }
+    this.$refs.chat.$refs.chatwindow.$refs.form.addEventListener('submit', e => {
+      e.preventDefault()
+      if(this.$refs.chat.$refs.chatwindow.$refs.input.value != '') {
+        sendMessage(this.$refs.chat.$refs.chatwindow.$refs.input.value)
+        this.$refs.chat.$refs.chatwindow.$refs.input.value = ''
+      }
+    })
+    
+    socket.on('login', data => { 
+      this.$store.commit('setID', socket.id)
+    })
+    socket.on('new message', (data, options) => { {
+      this.$store.commit('updateMessages', { isSent: false, message: data.message })
+    } })
+  }
 }
 </script>
 

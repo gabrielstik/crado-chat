@@ -1,25 +1,23 @@
 <template>
   <div
-    v-if="!isSent"
+    v-if="!content.isSent"
     class="messageContainer received"
   >
     <div class="imgContainer">
-      <img
-        :src="image"
-        alt="pp"
-      >
+      <div>{{ getFirstLetter(content.author) }}</div>
     </div>
     <div class="message">
-      {{ content }}
+      <div class="author">{{ content.author }}</div>
+      <div class="content">{{ content.message }}</div>
     </div>
   </div>
   <div
     v-else
     class="messageContainer sent"
   >
-  <div class="message">
-    {{ content }}
-  </div>
+    <div class="message">
+      <div class="content">{{ content.message }}</div>
+    </div>
   </div>
 </template>
 
@@ -27,7 +25,7 @@
 export default{
   props: {
     content: {
-      type: String,
+      type: Object,
       default: () => "Salut"
     },
     isSent: {
@@ -43,6 +41,11 @@ export default{
       default:() => false
     }
   },
+  methods: {
+    getFirstLetter(_string) {
+      return _string.charAt(0)
+    }
+  }
 }
 </script>
 
@@ -54,7 +57,7 @@ export default{
   margin-bottom: 30px;
 }
 
-.message {
+.message .content {
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
   padding: 14px 10px;
@@ -64,18 +67,35 @@ export default{
   background-color: var(--white)
 }
 
+.author {
+  color: var(--author);
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
 .received {
   justify-content: flex-start;
 }
 
-.received img {
+.imgContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 17px;
+
   height: 23px;
   width: 23px;
+
   border-radius: 50%;
-  margin-right: 17px;
+  background-color: grey;
+  
+  font-family: 'Muli';
+  text-transform: uppercase;
+  background: linear-gradient(180deg, #A7A7A7 0%, #7A7A7A 100%);
+  color: var(--white)
 }
 
-.received .message {
+.received .message .content{
   border-top-left-radius: 0px;
   border-top-right-radius: 12px;
   background-color: var(--main);
@@ -87,7 +107,7 @@ export default{
   justify-content: flex-end;
 }
 
-.sent .message {
+.sent .message .content{
   border-top-left-radius: 12px;
   border-top-right-radius: 0px;
   border: 1px solid #EAEEF7;
