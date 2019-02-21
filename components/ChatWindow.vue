@@ -11,8 +11,8 @@
     />
     <div v-if="!isSearch" class="chatWindow__footer">
       <div class="chatWindow__input">
-        <form action="">
-          <input type="text" placeholder="Tap your message here">
+        <form action="" ref="form">
+          <input type="text" placeholder="Tap your message here" ref="input">
           <input type="submit" value="">
         </form>
       </div>

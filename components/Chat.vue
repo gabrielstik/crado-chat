@@ -8,7 +8,7 @@
       </div>
       <input class="search" type="text" name="search" placeholder="Search message"/>
       <div class="previews">
-        <div 
+        <!-- <div 
           v-for="(conv, index) in this.convs"
           :key="index"
           v-on:click="updateConversation(conv)"
@@ -17,11 +17,12 @@
             :data="conv"
             :id="conv.id"
           />
-        </div>
+        </div> -->
       </div>
     </div>
     <div class="chatWindowContainer">
       <ChatWindow
+        ref="chatwindow"
         :isSearch="isSearch"
         :convID="convID"
         :messages="messages"
@@ -43,7 +44,7 @@ export default {
   },
   data() {
     return {
-      isSearch: true,
+      isSearch: false,
       convID: "0",
       messages: [],
       messagePreviews: [
@@ -60,7 +61,7 @@ export default {
           conversationID: '3',
         }
       ],
-      convs: this.$store.state.api.convs,
+      // convs: this.$store.state.api.convs,
     }
   },
   methods: {

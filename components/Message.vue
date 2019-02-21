@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="!isSent"
+    v-if="!content.isSent"
     class="messageContainer received"
   >
     <div class="imgContainer">
@@ -10,7 +10,7 @@
       >
     </div>
     <div class="message">
-      {{ content }}
+      {{ content.message }}
     </div>
   </div>
   <div
@@ -18,7 +18,7 @@
     class="messageContainer sent"
   >
   <div class="message">
-    {{ content }}
+    {{ content.message }}
   </div>
   </div>
 </template>
@@ -27,7 +27,7 @@
 export default{
   props: {
     content: {
-      type: String,
+      type: Object,
       default: () => "Salut"
     },
     isSent: {
