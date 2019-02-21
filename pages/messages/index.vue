@@ -31,10 +31,10 @@ export default {
     AppLogo
   },
   mounted: function() {
-    const db = new PouchDB('http://localhost:5984/cradochat')
+    const db = new PouchDB('http://localhost:5984/test')
 
     const convs = {
-      "_id": "convs",
+      _id: "convs",
       "convs": [
         {
           "id": "2812",

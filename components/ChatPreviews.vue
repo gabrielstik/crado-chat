@@ -4,7 +4,7 @@
       v-for="(conv, index) in this.convs"
       :key="index"
       :data="conv"
-      :id="conv.id"
+      :convid="conv.id"
     />
   </div>
 </template>

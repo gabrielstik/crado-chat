@@ -13,6 +13,7 @@ import MessagePreview from '~/components/MessagePreview.vue'
 import ChatWindow from '~/components/ChatWindow.vue'
 import Colors from '~/components/Colors.vue'
 import Chat from '~/components/Chat.vue'
+import openSocket from 'socket.io-client'
 
 export default {
   components: {
@@ -22,6 +23,33 @@ export default {
     Colors,
     Chat
   },
+  mounted: function() {
+    const socket = openSocket('http://localhost:3000')
+    console.log(socket)
+
+    const setUsername = () => {
+      const username = 'gabe'
+
+      if (username) {
+        socket.emit('add user', username);
+      }
+    }
+    setUsername()
+
+    const sendMessage = () => {
+      const message = 'test1234'
+
+      console.log('sending '+message)
+      this.$store.commit('updateMessages', '->'+message)
+      socket.emit('new message', message);
+    }
+    sendMessage()
+    
+    socket.on('login', (data) => { console.log('logged in') })
+    socket.on('new message', (data, options) => { {
+      this.$store.commit('updateMessages', '<-'+data.message)
+    } })
+  }
 }
 </script>
 
