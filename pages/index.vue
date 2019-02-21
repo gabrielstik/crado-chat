@@ -24,7 +24,7 @@ export default {
     Chat
   },
   mounted: function() {
-    const socket = openSocket('http://192.168.0.120:3000')
+    const socket = openSocket('http://localhost:3000')
     console.log(socket)
 
     const setUsername = () => {
@@ -43,8 +43,10 @@ export default {
     }
     this.$refs.chat.$refs.chatwindow.$refs.form.addEventListener('submit', e => {
       e.preventDefault()
-      sendMessage(this.$refs.chat.$refs.chatwindow.$refs.input.value)
-      this.$refs.chat.$refs.chatwindow.$refs.input.value = ''
+      if(this.$refs.chat.$refs.chatwindow.$refs.input.value != '') {
+        sendMessage(this.$refs.chat.$refs.chatwindow.$refs.input.value)
+        this.$refs.chat.$refs.chatwindow.$refs.input.value = ''
+      }
     })
     
     socket.on('login', data => { 

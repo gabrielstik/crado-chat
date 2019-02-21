@@ -30,16 +30,10 @@ export default {
   .messagePreview {
     width: 100%;
     padding: 20px;
-    margin-bottom: 10px;
 
     font-family: 'Muli';
     text-align: left;
     line-height: 1.4;
-
-    background-color: var(--white);
-
-    border-radius: 4px;
-    border: 1px solid var(--border);
 
     cursor: pointer;
   }

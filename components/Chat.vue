@@ -3,15 +3,17 @@
     <div class="allMessages">
       <div class="title">
         <h2>All messages</h2>
-        <div v-if="!isSearch" v-on:click="isSearch = !isSearch" class="newMessage"></div>
-        <div v-else v-on:click="isSearch = !isSearch" class="newMessage--close">×</div>
+        <!-- <div v-if="!isSearch" v-on:click="isSearch = !isSearch" class="newMessage"></div> -->
+        <div v-if="!isSearch" v-on:click="newMessage()" class="newMessage"></div>
+        <div v-if="isSearch" v-on:click="newMessage(true)" class="newMessage--close">×</div>
       </div>
       <input class="search" type="text" name="search" placeholder="Search message"/>
       <div class="previews">
         <!-- <div 
           v-for="(conv, index) in this.convs"
           :key="index"
-          v-on:click="updateConversation(conv)"
+          v-on:click="updateConversation(conv, index)"
+          ref="previews"
         >
           <MessagePreview
             :data="conv"
@@ -46,6 +48,7 @@ export default {
     return {
       isSearch: false,
       convID: "0",
+      activeConvIndex: 0,
       messages: [],
       messagePreviews: [
         {
@@ -65,12 +68,48 @@ export default {
     }
   },
   methods: {
-    updateConversation(_conv) {
+    updateConversation(_conv, _index) {
       this.isSearch = false
       // this.convID = _conv.id
       this.messages = _conv.messages
+      this.activeConvIndex = _index
+
+      for(let i = 0; i < this.$refs.previews.length; i++) {
+        if(i == _index) {
+          this.$refs.previews[i].style.border = '1px solid var(--main)'
+        } else {
+          this.$refs.previews[i].style.border = '1px solid var(--border)'
+        }
+      }
+      
+    },
+    // checkPreviews(_previews) {
+    //   if(_previews.length == 0) {
+    //     this.isSearch = true
+    //   } else {
+    //     this.isSearch = false
+
+    //     this.messages = this.convs[0].messages
+    //     this.$refs.previews[0].style.border = '1px solid var(--main)'
+    //   }
+    // },
+    newMessage(_isClose = false) {
+      this.isSearch = !this.isSearch
+
+      if(!_isClose)
+      {
+        for(let i = 0; i < this.$refs.previews.length; i++) {
+            this.$refs.previews[i].style.border = '1px solid var(--border)'
+        }
+      } else {
+        this.$refs.previews[this.activeConvIndex].style.border = '1px solid var(--main)'
+      }
+
     }
-  }
+  },
+  mounted(){
+    // this.checkPreviews(this.convs)
+  },
 }
 </script>
 
@@ -98,6 +137,14 @@ export default {
 .previews {
   overflow-y: scroll;
   width: 100%;
+}
+
+.previews > div {
+  margin-bottom: 10px;
+  background-color: var(--white);
+
+  border-radius: 4px;
+  border: 1px solid var(--border);
 }
 
 .newMessage {
