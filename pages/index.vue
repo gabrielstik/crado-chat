@@ -1,7 +1,7 @@
 <template>
   <section>
     <div>
-      <chat/>
+      <chat ref="chat"/>
     </div>
     <colors/>
   </section>
@@ -24,7 +24,7 @@ export default {
     Chat
   },
   mounted: function() {
-    const socket = openSocket('http://localhost:3000')
+    const socket = openSocket('http://192.168.0.120:3000')
     console.log(socket)
 
     const setUsername = () => {
@@ -36,18 +36,22 @@ export default {
     }
     setUsername()
 
-    const sendMessage = () => {
-      const message = 'test1234'
-
+    const sendMessage = (message) => {
       console.log('sending '+message)
-      this.$store.commit('updateMessages', '->'+message)
+      this.$store.commit('updateMessages', { isSent: true, message: message })
       socket.emit('new message', message);
     }
-    sendMessage()
+    this.$refs.chat.$refs.chatwindow.$refs.form.addEventListener('submit', e => {
+      e.preventDefault()
+      sendMessage(this.$refs.chat.$refs.chatwindow.$refs.input.value)
+      this.$refs.chat.$refs.chatwindow.$refs.input.value = ''
+    })
     
-    socket.on('login', (data) => { console.log('logged in') })
+    socket.on('login', data => { 
+      this.$store.commit('setID', socket.id)
+    })
     socket.on('new message', (data, options) => { {
-      this.$store.commit('updateMessages', '<-'+data.message)
+      this.$store.commit('updateMessages', { isSent: false, message: data.message })
     } })
   }
 }
