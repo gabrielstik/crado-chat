@@ -3,7 +3,8 @@ import Vuex from 'vuex'
 const createStore = () => {
   return new Vuex.Store({
     state: {
-      id: '',
+      username: '',
+      channel: '',
       messages: []
     },
     mutations: {
@@ -19,6 +20,12 @@ const createStore = () => {
         //   localStorage.setItem('userID', id)
         // }
         state.id = id
+      },
+      setUsername(state, username) {
+        state.username = username
+      },
+      setChannel(state, channel) {
+        state.channel = channel
       }
     }
   })

@@ -1,11 +1,11 @@
 <template>
     <div class="chatWindow__messages">
       <Message
-        v-for="(message, index) of this.messages"
+        v-for="(content, index) of this.messages"
         :key="index"
         :successive= "sameAuthor(messages, index)"
         image="./_nuxt/assets/images/man1.png"
-        :content=message
+        :content=content
       />
     </div>
 </template>
@@ -25,8 +25,8 @@ export default {
   },
   methods: {
     sameAuthor: (messages, index) => {
-        console.log(messages)
-        console.log(index)
+        // console.log(messages)
+        // console.log(index)
       if(index > 0){
         return messages[index-1].id == messages[index].id
       } else {

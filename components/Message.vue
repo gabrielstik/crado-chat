@@ -9,33 +9,39 @@
     >
       <div>{{ getFirstLetter("content.author") }}</div>
     </div>
-    <div class="message">
-      <div
-        v-if="!successive"
-        class="author"
-      >
+    <div
+      v-if="!successive"
+      class="message"
+    >
+      <div class="author">
         {{ content.author }}
       </div>
-      <div
-        v-if="!successive"
-        class="content"
-      >
+      <div class="content">
         {{ content.message }}
       </div>
-      <div
-        v-else
-        class="successiveMessage content"
-      >
-        {{ content.message }}
-      </div>
+    </div>
+    <div
+      v-else
+      class="successiveMessage message"
+    >
+      <div class="successiveContent content">{{ content.message }}</div>
     </div>
   </div>
   <div
     v-else
     class="messageContainer sent"
   >
-    <div class="message">
+    <div
+      v-if="!successive"
+      class="message"
+    >
       <div class="content">{{ content.message }}</div>
+    </div>
+    <div
+      v-else
+      class="successiveMessage message"
+    >
+      <div class="successiveContent content">{{ content.message }}</div>
     </div>
   </div>
 </template>
@@ -73,7 +79,15 @@ export default{
   width: 100%;
   display: flex;
   align-items: flex-start;
+  /* margin-bottom: 30px; */
+}
+
+.message {
   margin-bottom: 30px;
+}
+
+.message.successiveMessage {
+  margin-top: -20px;
 }
 
 .message .content {
@@ -86,7 +100,7 @@ export default{
   background-color: var(--white)
 }
 
-.message .content.successiveMessage {
+.message .content.successiveContent {
   margin-left: 40px;
 }
 
