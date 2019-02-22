@@ -3,7 +3,7 @@
       <Message
         v-for="(message, index) of this.messages"
         :key="index"
-        :isSent=isSent(message.from)
+        :successive= "sameAuthor(messages, index)"
         image="./_nuxt/assets/images/man1.png"
         :content=message
       />
@@ -24,8 +24,14 @@ export default {
     }
   },
   methods: {
-    isSent: (_authorID) => {
-      return /*userID*/28 == _authorID // Update varables name
+    sameAuthor: (messages, index) => {
+        console.log(messages)
+        console.log(index)
+      if(index > 0){
+        return messages[index-1].id == messages[index].id
+      } else {
+        return false
+      }
     },
   },
   data() {

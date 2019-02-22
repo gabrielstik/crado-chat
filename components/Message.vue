@@ -3,12 +3,31 @@
     v-if="!content.isSent"
     class="messageContainer received"
   >
-    <div class="imgContainer">
-      <div>{{ getFirstLetter(content.author) }}</div>
+    <div
+      v-if="!successive"
+      class="imgContainer"
+    >
+      <div>{{ getFirstLetter("content.author") }}</div>
     </div>
     <div class="message">
-      <div class="author">{{ content.author }}</div>
-      <div class="content">{{ content.message }}</div>
+      <div
+        v-if="!successive"
+        class="author"
+      >
+        {{ content.author }}
+      </div>
+      <div
+        v-if="!successive"
+        class="content"
+      >
+        {{ content.message }}
+      </div>
+      <div
+        v-else
+        class="successiveMessage content"
+      >
+        {{ content.message }}
+      </div>
     </div>
   </div>
   <div
@@ -28,7 +47,7 @@ export default{
       type: Object,
       default: () => "Salut"
     },
-    isSent: {
+    successive: {
       type: Boolean,
       default: () => false
     },
@@ -67,6 +86,10 @@ export default{
   background-color: var(--white)
 }
 
+.message .content.successiveMessage {
+  margin-left: 40px;
+}
+
 .author {
   color: var(--author);
   font-size: 12px;
@@ -88,7 +111,7 @@ export default{
 
   border-radius: 50%;
   background-color: grey;
-  
+
   font-family: 'Muli';
   text-transform: uppercase;
   background: linear-gradient(180deg, #A7A7A7 0%, #7A7A7A 100%);
