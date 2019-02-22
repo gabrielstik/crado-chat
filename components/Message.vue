@@ -7,7 +7,7 @@
       v-if="!successive"
       class="imgContainer"
     >
-      <div>{{ getFirstLetter("content.author") }}</div>
+      <div>{{ getFirstLetter(content.author) }}</div>
     </div>
     <div
       v-if="!successive"
@@ -119,6 +119,7 @@ export default{
   justify-content: center;
   align-items: center;
   margin-right: 17px;
+  margin-top: 16px;
 
   height: 23px;
   width: 23px;
