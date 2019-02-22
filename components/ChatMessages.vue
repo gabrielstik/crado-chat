@@ -1,11 +1,11 @@
 <template>
     <div class="chatWindow__messages">
       <Message
-        v-for="(message, index) of this.messages"
+        v-for="(content, index) of this.messages"
         :key="index"
-        :isSent=isSent(message.from)
+        :isSent=isSent(content.isSent)
         image="./_nuxt/assets/images/man1.png"
-        :content=message
+        :content=content
       />
     </div>
 </template>

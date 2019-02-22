@@ -2,11 +2,12 @@
   <section class="registerContainer">
     <div class="wechatContainer">
       <img src="../assets/pictograms/logo.svg" alt="logo">
-      <h1>WeChat</h1>
-      <input class="mail" type="mail" placeholder="Adresse mail">
-      <input class="password" type="password" placeholder="Mot de passe">
-      <input class="signup" type="submit" value="Me connecter">
-      <p>S'inscrire</p>
+      <h1>CradoChat</h1>
+      <form ref="form">
+        <input class="username" ref="username" type="text" placeholder="Pseudo">
+        <input class="channel" ref="channel" type="text" placeholder="Channel">
+        <a href="/chat" @click="e => this.chatNow(e)" class="signup" ref="chat">Chat now</a>
+      </form>
     </div>
   </section>
 </template>
@@ -14,7 +15,16 @@
 <script>
 
 export default {
-  components: {
+  mounted: function() {
+    this.$refs.form.addEventListener('keydown', e => { if (e.keyCode == 13) this.chatNow(e) })
+  },
+  methods: {
+    chatNow: function(e) {
+      e.preventDefault()
+      this.$store.commit('setUsername', this.$refs.username.value)
+      this.$store.commit('setChannel', this.$refs.channel.value)
+      this.$router.push('/chat')
+    }
   }
 }
 </script>
@@ -79,5 +89,14 @@ export default {
 .registerContainer p {
   width: 100%;
   color: var(--main);
+}
+
+input, a {
+  margin-top: 20px;
+  width: 100%;
+}
+
+form a {
+  display: block;
 }
 </style>
