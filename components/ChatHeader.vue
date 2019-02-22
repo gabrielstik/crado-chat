@@ -1,12 +1,12 @@
 <template>
   <div v-if="isSearch == false" class="chatWindow__header">
     <div class="chatWindow__author">
-      <div class="chatWindow__authorPicture">
+      <!-- <div class="chatWindow__authorPicture">
         <img src="../assets/images/man1.png" alt="author picture">
-      </div>
+      </div> -->
       <div class="chatWindow__authorInfos">
-        <div class="chatWindow__authorName">Didier Deschamps</div>
-        <div class="chatWindow__status">Active right now</div>
+        <div class="chatWindow__authorName">{{this.$store.state.channel}}</div>
+        <!-- <div class="chatWindow__status">Active right now</div> -->
       </div>
     </div>
   </div>

@@ -25,7 +25,6 @@ export default {
   },
   mounted: function() {
     const socket = openSocket('http://localhost:3000')
-    // socket.join(this.$store.state.channel)
 
     const setUsername = () => {
       if (this.$store.state.username) {
@@ -36,6 +35,7 @@ export default {
 
     const sendMessage = (message) => {
       this.$store.commit('updateMessages', { isSent: true, message: message, author: this.username })
+      // socket.to(this.$store.state.channel).emit('new message', message);
       socket.emit('new message', message);
     }
     this.$refs.chat.$refs.chatwindow.$refs.form.addEventListener('submit', e => {
@@ -47,6 +47,7 @@ export default {
     })
     
     socket.on('login', data => { 
+      // socket.join(this.$store.state.channel)
       this.$store.commit('setID', socket.id)
     })
     socket.on('new message', (data, options) => { {
